@@ -1,6 +1,6 @@
 <?php 
 
-include('utility.php');
+include('../utility.php');
 
 $input_array = read_integer_file('day1_input.txt');
 

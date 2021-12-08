@@ -1,6 +1,6 @@
 import numpy as np
 
-inputfile = open('day5_dummyinput.txt')
+inputfile = open('day5_input.txt')
 
 lines = list(map(lambda x: x.split(' -> '), inputfile.read().split('\n')))
 
@@ -20,10 +20,28 @@ def add_to_x_y(grid, x, y):
 
 def add_diagonal(grid, x_start, y_start, x_end, y_end):
     print('fixing that diagonal')
+
     if y_start < y_end:
+        print('line is ascending y')
+        coefficient_y = 1
+        y_end += 1
+    else:
+        print('line is descending y')
+        coefficient_y = -1
+        y_end -= 1
+    if x_start < x_end:
         print('line is ascending')
+        coefficient_x = 1
+        x_end += 1
     else:
         print('line is descending')
+        coefficient_x = -1
+        x_end -= 1
+    x_list = list(range(x_start, x_end, coefficient_x))
+    y_list = list(range(y_start, y_end, coefficient_y))
+
+    for i in range(0, len(x_list)):
+        grid = add_to_x_y(grid, x_list[i], y_list[i])
     
     return grid
 

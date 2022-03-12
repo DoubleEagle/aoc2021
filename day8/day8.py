@@ -61,7 +61,7 @@ def check_for_singles(solutions):
     singles = []
     for row in solutions:
         if sum(row) == 1:
-            singles.append([row.index(1), row])
+            singles.append([row.index_nested_pair(1), row])
 
     for single_index, row in singles:
         for s_row in solutions:

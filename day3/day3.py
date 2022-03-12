@@ -32,28 +32,28 @@ def get_most_occuring_at_pos(dataframe, position, oxygen=True):
 def get_oxygen_gen_rating(dataframe):
     leftovers = dataframe.copy(deep=True)
     for i in range(NUMBER_LEN):
-        if len(leftovers.index) == 1:
+        if len(leftovers.index_nested_pair) == 1:
             return leftovers
         most_occuring = get_most_occuring_at_pos(leftovers, i)
-        leftovers = leftovers.drop(leftovers[leftovers[i] != most_occuring].index)
+        leftovers = leftovers.drop(leftovers[leftovers[i] != most_occuring].index_nested_pair)
         # yea let's check this twice because why not
-        if len(leftovers.index) == 1:
+        if len(leftovers.index_nested_pair) == 1:
             return int(''.join(leftovers.to_numpy()[0]), 2)
 
 
 def get_co2_scrub_rating(dataframe):
     leftovers = dataframe.copy(deep=True)
     for i in range(NUMBER_LEN):
-        if len(leftovers.index) == 1:
+        if len(leftovers.index_nested_pair) == 1:
             return leftovers
         most_occuring = get_most_occuring_at_pos(leftovers, i)
         if most_occuring == '1':
             least_occuring = '0'
         else:
             least_occuring = '1'
-        leftovers = leftovers.drop(leftovers[leftovers[i] != least_occuring].index)
+        leftovers = leftovers.drop(leftovers[leftovers[i] != least_occuring].index_nested_pair)
         # yea let's check this twice because why not
-        if len(leftovers.index) == 1:
+        if len(leftovers.index_nested_pair) == 1:
             return int(''.join(leftovers.to_numpy()[0]), 2)
 
 
